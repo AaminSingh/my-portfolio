@@ -1,22 +1,115 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "./markdown.css";
 
+/* =========================================================================
+   FOUR DISTINCT THEME PALETTES WITH 100% SOLID OPAQUE DRAWER BACKGROUNDS
+   ========================================================================= */
+
+/* THEME 1: Cyber Purple (Default) */
+:root, [data-theme="purple"] {
+  --bg-main: #0a0a0d;
+  --bg-card: #12111f;
+  --bg-card-hover: #171629;
+  --bg-drawer: #0a0a0d; /* 100% Solid dark background for drawer */
+  --accent-primary: #c084fc;
+  --accent-secondary: #a855f7;
+  --accent-tertiary: #818cf8;
+  --accent-glow: rgba(168, 85, 247, 0.4);
+  --border-color: rgba(168, 85, 247, 0.3);
+  --border-hover: rgba(168, 85, 247, 0.6);
+  --badge-bg: rgba(168, 85, 247, 0.15);
+  --text-main: #f1f5f9;
+  --text-sub: #94a3b8;
+  --header-bg: #0a0a0d;
+}
+
+/* THEME 2: Neon Matrix / Cyber Mint */
+[data-theme="green"] {
+  --bg-main: #080c0a;
+  --bg-card: #0d1410;
+  --bg-card-hover: #121c16;
+  --bg-drawer: #080c0a; /* 100% Solid dark background for drawer */
+  --accent-primary: #4ade80;
+  --accent-secondary: #2dd4bf;
+  --accent-tertiary: #10b981;
+  --accent-glow: rgba(74, 222, 128, 0.4);
+  --border-color: rgba(74, 222, 128, 0.3);
+  --border-hover: rgba(74, 222, 128, 0.6);
+  --badge-bg: rgba(74, 222, 128, 0.15);
+  --text-main: #f1f5f9;
+  --text-sub: #94a3b8;
+  --header-bg: #080c0a;
+}
+
+/* THEME 3: Hyper Blue / Electric Cyan */
+[data-theme="blue"] {
+  --bg-main: #060b14;
+  --bg-card: #0c1626;
+  --bg-card-hover: #111f36;
+  --bg-drawer: #060b14; /* 100% Solid dark background for drawer */
+  --accent-primary: #38bdf8;
+  --accent-secondary: #06b6d4;
+  --accent-tertiary: #60a5fa;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+  --border-color: rgba(56, 189, 248, 0.3);
+  --border-hover: rgba(56, 189, 248, 0.6);
+  --badge-bg: rgba(56, 189, 248, 0.15);
+  --text-main: #f1f5f9;
+  --text-sub: #94a3b8;
+  --header-bg: #060b14;
+}
+
+/* THEME 4: Clean Light / Minimalist White (Rich High-Contrast Deep Purple) */
+[data-theme="light"] {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-drawer: #ffffff; /* 100% Solid clean white background for drawer */
+  --accent-primary: #6d28d9; /* High-contrast vibrant deep purple */
+  --accent-secondary: #7c3aed;
+  --accent-tertiary: #4f46e5;
+  --accent-glow: rgba(109, 40, 217, 0.2);
+  --border-color: rgba(109, 40, 217, 0.25);
+  --border-hover: rgba(109, 40, 217, 0.6);
+  --badge-bg: rgba(109, 40, 217, 0.08);
+  --text-main: #0f172a;
+  --text-sub: #475569;
+  --header-bg: #ffffff;
+}
+
 * {
   font-family: "Inter", sans-serif;
 }
 
+code, pre, .font-mono {
+  font-family: "Fira Code", monospace;
+}
+
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body {
-  @apply dark:bg-black dark:text-white;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* === Gradient Background Glows === */
+/* === Hero Gradient Text === */
+.hero-gradient-text {
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === Dynamic Radial Glow Orbs === */
 .gradient-circle {
   position: fixed;
   pointer-events: none;
@@ -24,16 +117,17 @@ body {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  height: 400px;
-  width: 600px;
-  opacity: 0.15;
-  filter: blur(80px);
+  height: 450px;
+  width: 650px;
+  opacity: 0.22;
+  filter: blur(90px);
   background: radial-gradient(
     circle,
-    rgba(168, 85, 247, 1) 0%,
-    rgba(99, 102, 241, 0.6) 50%,
-    rgba(236, 72, 153, 0.3) 100%
+    var(--accent-secondary) 0%,
+    var(--accent-tertiary) 50%,
+    transparent 100%
   );
+  transition: background 0.5s ease;
 }
 
 .gradient-circle-bottom {
@@ -42,41 +136,42 @@ body {
   z-index: -1;
   bottom: -100px;
   right: -100px;
-  height: 400px;
-  width: 500px;
-  opacity: 0.1;
-  filter: blur(80px);
+  height: 450px;
+  width: 550px;
+  opacity: 0.18;
+  filter: blur(90px);
   background: radial-gradient(
     circle,
-    rgba(236, 72, 153, 1) 0%,
-    rgba(168, 85, 247, 0.6) 50%,
-    rgba(99, 102, 241, 0.3) 100%
+    var(--accent-primary) 0%,
+    var(--accent-secondary) 50%,
+    transparent 100%
   );
+  transition: background 0.5s ease;
 }
 
-/* === Glassmorphism Cards === */
+/* === Theme Responsive Glass Cards === */
 .glass-card {
-  background: rgba(15, 15, 25, 0.6);
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(168, 85, 247, 0.1);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(168, 85, 247, 0.3);
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(168, 85, 247, 0.1);
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    0 0 35px var(--accent-glow);
 }
 
 .glass-modal {
-  background: rgba(10, 10, 20, 0.95);
+  background: var(--bg-card);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(168, 85, 247, 0.15);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
 }
 
@@ -95,10 +190,10 @@ body {
   bottom: -2px;
   background: linear-gradient(
     45deg,
-    #a855f7,
-    #6366f1,
-    #ec4899,
-    #a855f7
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-tertiary),
+    var(--accent-primary)
   );
   border-radius: 18px;
   z-index: -1;
@@ -110,37 +205,37 @@ body {
   opacity: 1;
 }
 
-/* === Technology Badges === */
+/* === Dynamic Badges === */
 .tech-badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 12px;
   font-size: 0.75rem;
+  font-family: "Fira Code", monospace;
   font-weight: 500;
   border-radius: 9999px;
-  background: rgba(168, 85, 247, 0.1);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  background: var(--badge-bg);
+  color: var(--accent-primary);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .tech-badge:hover {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  border-color: var(--border-hover);
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* === Social Links Glow === */
+/* === Dynamic Social Links === */
 .social-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
   border-radius: 12px;
-  background: rgba(15, 15, 25, 0.6);
-  border: 1px solid rgba(168, 85, 247, 0.15);
-  color: #e2e8f0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
@@ -149,26 +244,18 @@ body {
 }
 
 .social-link:hover {
-  background: rgba(168, 85, 247, 0.15);
-  border-color: rgba(168, 85, 247, 0.4);
-  color: #c084fc;
+  background: var(--badge-bg);
+  border-color: var(--border-hover);
+  color: var(--accent-primary);
   transform: translateY(-3px);
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(168, 85, 247, 0.15);
+    0 10px 30px rgba(0, 0, 0, 0.15),
+    0 0 20px var(--accent-glow);
 }
 
-.social-link svg {
-  transition: all 0.3s ease;
-}
-
-.social-link:hover svg {
-  filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.6));
-}
-
-/* === Keyword Highlight === */
+/* === Dynamic Keyword Highlight === */
 .highlight-keyword {
-  color: #c084fc;
+  color: var(--accent-primary);
   font-weight: 600;
   position: relative;
 }
@@ -180,8 +267,8 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, #a855f7, #6366f1);
-  opacity: 0;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
@@ -189,13 +276,13 @@ body {
   opacity: 1;
 }
 
-/* === Modal Styles === */
+/* === Modal === */
 .modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,263 +300,89 @@ body {
   width: 4px;
 }
 
-.modal-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 .modal-content::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.3);
+  background: var(--border-color);
   border-radius: 10px;
 }
 
-@keyframes modalSlideIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* === Project Card Image === */
-.project-image-wrapper {
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.project-image-wrapper img {
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card:hover .project-image-wrapper img {
-  transform: scale(1.08);
-}
-
-/* === Scroll Reveal === */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Section Title === */
+/* === Section Titles === */
 .section-title {
   font-size: 0.875rem;
+  font-family: "Fira Code", monospace;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #a855f7;
+  color: var(--accent-primary);
   margin-bottom: 8px;
 }
 
 .section-heading {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, #a855f7);
+  background: linear-gradient(135deg, var(--text-main), var(--accent-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* === Scrollbar === */
+/* === Scrollbars === */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.3);
+  background: var(--border-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.5);
+  background: var(--border-hover);
 }
 
-/* === Primary Button Enhanced === */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  cursor: pointer;
-}
-
-.btn-github {
-  background: rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.btn-github:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
+/* === Dynamic Buttons === */
 .btn-details {
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  color: white;
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .btn-details:hover {
-  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
+  box-shadow: 0 8px 25px var(--accent-glow);
   transform: translateY(-2px);
 }
 
-/* === Category Badge === */
 .category-badge {
   display: inline-block;
   padding: 4px 14px;
   font-size: 0.7rem;
+  font-family: "Fira Code", monospace;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.2));
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.25);
+  background: var(--badge-bg);
+  color: var(--accent-primary);
+  border: 1px solid var(--border-color);
 }
 
-/* === Admin Dashboard Styles === */
-.admin-card {
-  background: rgba(15, 15, 25, 0.8);
-  border: 1px solid rgba(168, 85, 247, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  transition: all 0.3s ease;
-}
-
-.admin-card:hover {
-  border-color: rgba(168, 85, 247, 0.3);
-}
-
+/* Admin Dashboard Inputs */
 .admin-input {
   width: 100%;
   padding: 10px 14px;
-  background: rgba(15, 15, 25, 0.8);
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #e2e8f0;
+  color: var(--text-main);
   font-size: 0.875rem;
   transition: all 0.3s ease;
   outline: none;
-  font-family: "Inter", sans-serif;
 }
 
 .admin-input:focus {
-  border-color: #a855f7;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
-}
-
-.admin-input::placeholder {
-  color: rgba(226, 232, 240, 0.3);
-}
-
-.admin-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  font-family: "Inter", sans-serif;
-}
-
-.admin-btn-primary {
-  background: linear-gradient(135deg, #a855f7, #6366f1);
-  color: white;
-}
-
-.admin-btn-primary:hover {
-  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.35);
-  transform: translateY(-2px);
-}
-
-.admin-btn-danger {
-  background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.admin-btn-danger:hover {
-  background: rgba(239, 68, 68, 0.25);
-  border-color: rgba(239, 68, 68, 0.4);
-}
-
-.admin-btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e2e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.admin-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* === Light Theme Overrides === */
-:root {
-  color-scheme: dark;
-}
-
-.light .glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(168, 85, 247, 0.1);
-}
-
-.light .glass-card:hover {
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.1),
-    0 0 40px rgba(168, 85, 247, 0.05);
-}
-
-.light .social-link {
-  background: rgba(255, 255, 255, 0.8);
-  color: #334155;
-  border-color: rgba(168, 85, 247, 0.15);
-}
-
-.light .social-link:hover {
-  color: #7c3aed;
-}
-
-.light .tech-badge {
-  background: rgba(168, 85, 247, 0.08);
-  color: #7c3aed;
-}
-
-.light .section-heading {
-  background: linear-gradient(135deg, #1e293b, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.light .highlight-keyword {
-  color: #7c3aed;
-}
-
-.opacity-0 {
-  opacity: 0;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px var(--accent-glow);
 }
