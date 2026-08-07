@@ -102,19 +102,20 @@ export default function Home() {
   const [projects, setProjects] = useState(data.projects);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Load projects from localStorage (admin dashboard sync)
+  // Load projects from API with fallback to portfolio.json
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("portfolio_projects");
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProjects(parsed);
+    async function loadProjects() {
+      try {
+        const res = await fetch("/api/projects");
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+          setProjects(json.data);
         }
+      } catch (e) {
+        // Fallback to data.projects
       }
-    } catch (e) {
-      // Fall back to default projects from JSON
     }
+    loadProjects();
   }, []);
 
   // Scroll handlers
@@ -180,31 +181,25 @@ export default function Home() {
           <div className="mt-5">
             <h1
               ref={textOne}
-              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
+              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 font-extrabold w-4/5 mob:w-full laptop:w-4/5 text-[var(--text-main)]"
             >
               {data.headerTaglineOne}
             </h1>
             <h2
               ref={textTwo}
-              className="text-2xl tablet:text-4xl laptop:text-5xl laptopl:text-6xl p-1 tablet:p-2 font-bold w-full laptop:w-4/5 mt-2"
-              style={{
-                background: "linear-gradient(135deg, #ffffff 0%, #a855f7 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="hero-gradient-text text-2xl tablet:text-4xl laptop:text-5xl laptopl:text-6xl p-1 tablet:p-2 font-bold w-full laptop:w-4/5 mt-2"
             >
               {data.headerTaglineTwo}
             </h2>
             <p
               ref={textThree}
-              className="text-base tablet:text-lg laptop:text-xl p-1 tablet:p-2 text-gray-400 w-full laptop:w-3/5 mt-3 leading-relaxed"
+              className="text-base tablet:text-lg laptop:text-xl p-1 tablet:p-2 text-[var(--text-main)] opacity-80 w-full laptop:w-3/5 mt-3 leading-relaxed font-sans"
             >
               {data.headerSubheading}
             </p>
             <p
               ref={textFour}
-              className="text-sm tablet:text-base laptop:text-lg p-1 tablet:p-2 text-gray-500 w-full laptop:w-3/5 mt-2 leading-relaxed"
+              className="text-sm tablet:text-base laptop:text-lg p-1 tablet:p-2 text-[var(--text-sub)] w-full laptop:w-3/5 mt-2 leading-relaxed font-sans"
             >
               {data.headerIntro}
             </p>
@@ -213,20 +208,19 @@ export default function Home() {
           <Socials className="mt-5 laptop:mt-8" />
         </div>
 
-        {/* ===== PROJECTS SECTION ===== */}
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
+        {/* ===== PROJECTS / SYSTEM DEPLOYMENTS SECTION ===== */}
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef} id="projects">
           <div className="scroll-reveal">
-            <p className="section-title">Featured Projects</p>
-            <h2 className="section-heading text-2xl tablet:text-3xl mb-2">
-              Work.
+            <p className="section-title text-purple-400 font-mono">{"// FEATURED ARCHITECTURES"}</p>
+            <h2 className="section-heading text-2xl tablet:text-4xl font-extrabold mb-2 text-white">
+              System <span className="text-purple-400">Deployments</span>
             </h2>
-            <p className="text-gray-400 text-sm tablet:text-base mb-8 max-w-2xl">
-              A selection of projects I&apos;ve built — from AI-powered platforms to
-              full-stack web applications.
+            <p className="text-slate-400 font-mono text-xs tablet:text-sm mb-8 max-w-2xl">
+              Production-ready applications spanning AI/ML engineering, autonomous forensic accounting, RAG pipelines, and mobile security.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6 scroll-reveal">
+          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-8 scroll-reveal">
             {projects.map((project) => (
               <ProjectCard
                 key={project.id}
