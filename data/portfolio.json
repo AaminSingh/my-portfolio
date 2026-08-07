@@ -33,47 +33,58 @@
   "projects": [
     {
       "id": "1",
+      "title": "PRAMAAN: AI Powered Forensic Accountant",
+      "category": "FinTech / AI",
+      "description": "PRAMAAN is an autonomous AI forensic accountant that analyzes financial statements, auditor reports, cash flow statements, and corporate filings to uncover hidden risks, misleading claims, and financial inconsistencies.",
+      "fullDescription": "PRAMAAN is an autonomous AI forensic accountant that analyzes financial statements, auditor reports, cash flow statements, and corporate filings to uncover hidden risks, misleading claims, and financial inconsistencies. Features custom fine-tuned AI models and jargon-free reporting.",
+      "imageSrc": "/images/projects/pramaan-fintech.png",
+      "github": "https://github.com/AaminSingh/Pramaan",
+      "liveLink": "https://pramaan-ai.vercel.app",
+      "technologies": ["React 19", "TailwindCSS", "FastAPI", "Firebase"],
+      "highlights": ["Financial fraud detection", "Cross-referencing corporate claims", "Custom fine-tuned AI", "Jargon-free reporting", "Investor intelligence platform", "Financial anomaly detection"]
+    },
+    {
+      "id": "2",
       "title": "RAG Chatbot",
       "category": "AI / Generative AI",
       "description": "An AI-powered Retrieval-Augmented Generation (RAG) chatbot that combines document retrieval with advanced language models to deliver accurate, context-aware, and factually grounded responses.",
       "fullDescription": "An AI-powered Retrieval-Augmented Generation (RAG) chatbot that combines document retrieval with advanced language models to deliver accurate, context-aware, and factually grounded responses. Built with LangChain and Gemini API, featuring session-aware conversations and secure API configuration.",
       "imageSrc": "/images/projects/rag-chatbot.png",
       "github": "https://github.com/AaminSingh/RAG",
-      "technologies": ["Python", "Streamlit", "LangChain", "Gemini API", "FAISS", "HuggingFace Embeddings"],
+      "liveLink": "",
+      "technologies": ["Python", "Streamlit", "LangChain", "Gemini API"],
       "highlights": ["LangChain Integration", "Gemini API", "Streamlit Interface", "Session-aware conversations", "Retrieval-Augmented Generation", "Secure API configuration", "Modular architecture", "Error handling and logging"]
     },
     {
-      "id": "2",
-      "title": "LexAI (Simply Legal)",
-      "category": "LegalTech / AI",
-      "description": "An AI-powered legal document automation platform that simplifies contracts, agreements, and compliance by translating complex legal language into plain English and automating document creation.",
-      "fullDescription": "An AI-powered legal document automation platform that simplifies contracts, agreements, and compliance by translating complex legal language into plain English and automating document creation. Features Smart Intake Wizard, Dynamic Contract Generation, and RAG-powered clause retrieval.",
-      "imageSrc": "/images/projects/lexai-legal.png",
-      "github": "https://github.com/AaminSingh/SimplyLegal01",
-      "technologies": ["Next.js", "React", "TailwindCSS", "FastAPI", "Gemini API", "Supabase", "PyMuPDF"],
-      "highlights": ["Smart Intake Wizard", "Dynamic Contract Generation", "AI Legal Assistant", "PDF Review Engine", "E-Signature System", "RAG-powered clause retrieval", "Risk detection"]
-    },
-    {
       "id": "3",
-      "title": "PRAMAAN – AI Powered Forensic Accountant",
-      "category": "FinTech / AI",
-      "description": "PRAMAAN is an autonomous AI forensic accountant that analyzes financial statements, auditor reports, cash flow statements, and corporate filings to uncover hidden risks, misleading claims, and financial inconsistencies.",
-      "fullDescription": "PRAMAAN is an autonomous AI forensic accountant that analyzes financial statements, auditor reports, cash flow statements, and corporate filings to uncover hidden risks, misleading claims, and financial inconsistencies. Features custom fine-tuned AI models and jargon-free reporting.",
-      "imageSrc": "/images/projects/pramaan-fintech.png",
-      "github": "",
-      "technologies": ["React 19", "TailwindCSS", "FastAPI", "Firebase", "Python", "Fine-tuned Llama 3", "Ollama", "Lightning AI"],
-      "highlights": ["Financial fraud detection", "Cross-referencing corporate claims", "Custom fine-tuned AI", "Jargon-free reporting", "Investor intelligence platform", "Financial anomaly detection"]
+      "title": "KAVACH: Voice-activated Android safety application",
+      "category": "Security / Android",
+      "description": "A voice-activated emergency response and safety application for Android featuring background acoustic trigger detection, automated SMS alerts, and real-time location tracking.",
+      "fullDescription": "A voice-activated emergency response and safety application for Android featuring background acoustic trigger detection, automated SMS alerts, and real-time location tracking for user safety.",
+      "imageSrc": "/images/projects/kavach-safety.png",
+      "github": "https://github.com/AaminSingh/Kavach-Safety",
+      "liveLink": "",
+      "technologies": ["Java", "Android SDK"],
+      "highlights": ["Voice Activation", "Emergency SMS", "Location Telemetry", "Background Service"]
     },
     {
       "id": "4",
-      "title": "VisionMeter",
-      "category": "HealthTech",
-      "description": "A browser-based eye screening platform that enables users to perform visual acuity, color vision, astigmatism, contrast sensitivity, and visual field tests using calibration-driven measurements.",
-      "fullDescription": "A browser-based eye screening platform that enables users to perform visual acuity, color vision, astigmatism, contrast sensitivity, and visual field tests using calibration-driven measurements. Features voice recognition and PDF report generation.",
-      "imageSrc": "/images/projects/visionmeter-health.png",
-      "github": "https://github.com/AaminSingh/VisionMeter",
-      "technologies": ["HTML", "CSS", "JavaScript", "IndexedDB", "Web Speech API", "jsPDF"],
-      "highlights": ["Visual Acuity Testing", "Color Vision Analysis", "Astigmatism Detection", "Contrast Sensitivity Test", "Visual Field Analysis", "Voice Recognition", "PDF Report Generation", "IndexedDB Session Storage"]
+      "title": "AI-Medical Assistant: Clinical Diagnosis & Triage Platform",
+      "category": "HealthTech / AI",
+      "description": "An AI-based clinical decision-support platform featuring conversational symptom checking with emergency red-flag triage, hybrid ML (Scikit-learn + Groq LLaMA fallback), MongoDB care context, and printable medical PDF summaries.",
+      "fullDescription": "Next-generation clinical decision-support system featuring multi-turn conversational symptom checking with real-time rule-based emergency triage. Powered by a hybrid prediction engine combining Python Scikit-learn models (RandomForest/XGBoost) with Groq LLaMA models and Gemini API for zero-downtime inference fallback. Cross-references MongoDB collections for dataset care insights, JWT session authentication, AI diet planning, and printable medical PDF summary exports.",
+      "imageSrc": "/images/projects/ai-medical-assistant.png",
+      "github": "https://github.com/AaminSingh/AI-Medical-Assistant",
+      "liveLink": "https://aegis-frontend-bumj.onrender.com/",
+      "technologies": ["React 18", "Node.js", "Express", "MongoDB", "FastAPI", "Groq LLaMA", "Gemini API", "TailwindCSS"],
+      "highlights": [
+        "Conversational Symptom Triage & Red-Flag Emergency Detection",
+        "Hybrid Engine (Scikit-Learn ML + Groq LLaMA Fallback)",
+        "MongoDB Care Insights & Disease Context Lookup",
+        "AI Diet Planner & Interactive Health Calculators",
+        "JWT Auth & Printable Medical PDF Summaries",
+        "Split-Architecture Cloud Deployment (Render + Vercel)"
+      ]
     }
   ],
   "services": [
