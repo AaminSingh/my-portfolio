@@ -14,10 +14,12 @@ module.exports = {
     },
     extend: {
       colors: {
+        darkBg: "#0a0a0d",
+        darkText: "#e2e8f0",
         accent: {
-          primary: "#a855f7",
-          secondary: "#6366f1",
-          tertiary: "#ec4899",
+          primary: "#c084fc",
+          secondary: "#a855f7",
+          tertiary: "#818cf8",
           glow: "rgba(168, 85, 247, 0.4)",
         },
       },
