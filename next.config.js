@@ -7,9 +7,9 @@ const nextConfig = {
     domains: ["images.unsplash.com"],
     unoptimized: true,
   },
-  // GitHub Pages deploys to /my-portfolio/ subpath
-  basePath: isProd ? "/my-portfolio" : "",
-  assetPrefix: isProd ? "/my-portfolio/" : "",
+  // Only set basePath if NEXT_PUBLIC_BASE_PATH is explicitly set or when building in GitHub Actions for GitHub Pages
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS ? "/my-portfolio" : ""),
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS ? "/my-portfolio/" : ""),
   trailingSlash: true,
 };
 
