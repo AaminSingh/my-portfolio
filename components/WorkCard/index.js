@@ -1,4 +1,5 @@
 import React from "react";
+import { getImageUrl, FALLBACK_PROJECT_IMAGE } from "../../utils";
 
 const WorkCard = ({ img, name, description, onClick }) => {
   return (
@@ -13,8 +14,12 @@ const WorkCard = ({ img, name, description, onClick }) => {
         <img
           alt={name}
           className="h-full w-full object-cover hover:scale-110 transition-all ease-out duration-300"
-          src={img}
-        ></img>
+          src={getImageUrl(img, FALLBACK_PROJECT_IMAGE)}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = FALLBACK_PROJECT_IMAGE;
+          }}
+        />
       </div>
       <h1 className="mt-5 text-3xl font-medium">
         {name ? name : "Project Name"}

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { getImageUrl, FALLBACK_PROJECT_IMAGE } from "../../utils";
 
 const ProjectModal = ({ project, onClose }) => {
   useEffect(() => {
@@ -35,9 +36,13 @@ const ProjectModal = ({ project, onClose }) => {
         {/* Project Image */}
         <div className="relative w-full" style={{ height: "300px" }}>
           <img
-            src={project.imageSrc}
+            src={getImageUrl(project.imageSrc, FALLBACK_PROJECT_IMAGE)}
             alt={project.title}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = FALLBACK_PROJECT_IMAGE;
+            }}
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,20,1) 0%, transparent 60%)" }} />
         </div>

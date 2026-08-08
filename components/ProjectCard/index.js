@@ -1,4 +1,5 @@
 import React from "react";
+import { getImageUrl, FALLBACK_PROJECT_IMAGE } from "../../utils";
 
 const ProjectCard = ({ project, onViewDetails }) => {
   return (
@@ -9,10 +10,10 @@ const ProjectCard = ({ project, onViewDetails }) => {
           <img
             alt={project.title}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            src={project.imageSrc}
+            src={getImageUrl(project.imageSrc, FALLBACK_PROJECT_IMAGE)}
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = "https://via.placeholder.com/600x350/0d0d14/c084fc?text=System+Deployment";
+              e.target.src = FALLBACK_PROJECT_IMAGE;
             }}
           />
           {project.category && (
