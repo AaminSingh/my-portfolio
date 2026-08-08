@@ -386,3 +386,208 @@ body {
   border-color: var(--accent-primary);
   box-shadow: 0 0 20px var(--accent-glow);
 }
+
+/* =========================================================================
+   3D FLIP CERTIFICATE CARD STYLES & CYBERPUNK THEME INTEGRATION
+   ========================================================================= */
+
+.card {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  perspective: 1000px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  position: relative;
+}
+
+/* =========================================================================
+   CERTIFICATES COLLAGE BENTO GRID
+   ========================================================================= */
+
+.cert-collage-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cert-collage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 350px;
+    grid-flow: dense;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cert-collage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 350px;
+    grid-flow: dense;
+  }
+}
+
+.cert-span-wide {
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .cert-span-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+.cert-span-tall {
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .cert-span-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+}
+
+.cert-span-standard {
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 100%;
+}
+
+.front,
+.back {
+  background-color: #090d16;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.back::before {
+  position: absolute;
+  content: ' ';
+  display: block;
+  width: 180px;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, #4ade80, #06b6d4, #3b82f6, #4ade80, transparent);
+  animation: rotation_481 5000ms infinite linear;
+}
+
+.back-content {
+  position: absolute;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: #0b0f19;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card:hover .content {
+  transform: rotateY(180deg);
+}
+
+@keyframes rotation_481 {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+.front {
+  transform: rotateY(180deg);
+  color: white;
+}
+
+.front .front-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description {
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: rgba(6, 10, 18, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.front .img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #4ade80; /* Neon Teal */
+  position: absolute;
+  filter: blur(25px);
+  opacity: 0.7;
+  animation: floating 2800ms infinite ease-in-out;
+}
+
+#bottom {
+  background-color: #0891b2; /* Cyan */
+  left: 30px;
+  bottom: -20px;
+  width: 150px;
+  height: 150px;
+  animation-delay: -900ms;
+}
+
+#right {
+  background-color: #1e3a8a; /* Deep Cyber Blue */
+  right: -20px;
+  top: -10px;
+  width: 120px;
+  height: 120px;
+  animation-delay: -1800ms;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(12px) scale(1.06); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
